@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harika Seemakurti - Portfolio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-purple: #7c3aed;
+        --primary-blue: #3b82f6;
+        --secondary-purple: #a855f7;
+        --accent-pink: #ec4899;
+        --accent-cyan: #06b6d4;
+        --text-primary: #1f2937;
+        --text-secondary: #6b7280;
+        --bg-primary: #f8fafc;
+        --bg-secondary: #ffffff;
+        --border-light: #e5e7eb;
+        --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.6;
+        scroll-behavior: smooth;
+      }
+
+      /* Navigation */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        padding: 1rem 0;
+        box-shadow: var(--shadow);
+        transition: all 0.3s ease;
+        animation: slideDown 0.8s ease-out;
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-purple);
+        animation: fadeInLeft 1s ease-out;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+        animation: fadeInRight 1s ease-out;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-weight: 500;
+        transition: color 0.3s ease;
+        position: relative;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary-purple);
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary-purple);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      /* Mobile Navigation */
+      .mobile-menu {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+      }
+
+      .mobile-menu span {
+        width: 25px;
+        height: 3px;
+        background: var(--text-primary);
+        margin: 3px 0;
+        transition: 0.3s;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: linear-gradient(
+          135deg,
+          var(--primary-purple),
+          var(--primary-blue)
+        );
+        color: white;
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff08" points="0,1000 1000,0 1000,1000"/></svg>');
+        background-size: cover;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 800px;
+        animation: heroFadeIn 1.5s ease-out;
+      }
+
+      .profile-image {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        border: 5px solid rgba(255, 255, 255, 0.3);
+        object-fit: cover;
+        margin-bottom: 2rem;
+        animation: profileFloat 3s ease-in-out infinite, profileZoom 1s ease-out;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        background: linear-gradient(45deg, #ffffff, #e0e7ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: titleSlideUp 1s ease-out 0.3s both;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        opacity: 0.9;
+        animation: textFadeIn 1s ease-out 0.6s both;
+      }
+
+      .cta-button {
+        display: inline-block;
+        padding: 1rem 2rem;
+        background: var(--accent-pink);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        margin-top: 2rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(236, 72, 153, 0.3);
+        animation: buttonPulse 2s ease-in-out infinite,
+          buttonFadeIn 1s ease-out 0.9s both;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(236, 72, 153, 0.4);
+        animation: none;
+      }
+
+      /* Section Styles */
+      .section {
+        padding: 5rem 0;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 3rem;
+        color: var(--primary-purple);
+        animation: sectionTitleFade 1s ease-out;
+      }
+
+      /* About Section */
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        animation: aboutContentSlide 1s ease-out 0.2s both;
+      }
+
+      .about-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--text-secondary);
+        animation: textSlideLeft 1s ease-out 0.4s both;
+      }
+
+      .about-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      .stat-card {
+        background: var(--bg-secondary);
+        padding: 2rem;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: var(--shadow);
+        transition: transform 0.3s ease;
+        animation: statCardFloat 1s ease-out calc(0.6s + var(--delay, 0s)) both;
+      }
+
+      .stat-card:nth-child(1) {
+        --delay: 0.1s;
+      }
+      .stat-card:nth-child(2) {
+        --delay: 0.2s;
+      }
+      .stat-card:nth-child(3) {
+        --delay: 0.3s;
+      }
+      .stat-card:nth-child(4) {
+        --delay: 0.4s;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px) scale(1.02);
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary-purple);
+        margin-bottom: 0.5rem;
+        animation: numberCount 2s ease-out calc(1s + var(--delay, 0s)) both;
+      }
+
+      .stat-label {
+        color: var(--text-secondary);
+        font-weight: 500;
+      }
+
+      /* Education Section */
+      .education-timeline {
+        position: relative;
+        padding: 2rem 0;
+        animation: timelineFade 1s ease-out 0.2s both;
+      }
+
+      .timeline-line {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: var(--primary-purple);
+        transform: translateX(-50%);
+        animation: timelineGrow 2s ease-out 0.5s both;
+      }
+
+      .timeline-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 3rem;
+        position: relative;
+        animation: timelineItemSlide 1s ease-out calc(0.7s + var(--delay, 0s))
+          both;
+      }
+
+      .timeline-item:nth-child(odd) {
+        flex-direction: row-reverse;
+        --delay: 0.1s;
+      }
+
+      .timeline-item:nth-child(even) {
+        --delay: 0.2s;
+      }
+
+      .timeline-content {
+        flex: 1;
+        background: var(--bg-secondary);
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: var(--shadow);
+        margin: 0 2rem;
+        transition: transform 0.3s ease;
+      }
+
+      .timeline-content:hover {
+        transform: translateY(-5px) scale(1.02);
+      }
+
+      .timeline-marker {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20px;
+        height: 20px;
+        background: var(--primary-purple);
+        border-radius: 50%;
+        border: 4px solid var(--bg-primary);
+        z-index: 1;
+        animation: markerPulse 2s ease-in-out infinite;
+      }
+
+      .completion-badge {
+        display: inline-block;
+        background: var(--accent-cyan);
+        color: white;
+        padding: 0.3rem 1rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        animation: badgeGlow 2s ease-in-out infinite;
+      }
+
+      .institution-name {
+        font-weight: 600;
+        color: var(--text-secondary);
+        margin-bottom: 0.5rem;
+      }
+
+      .grade {
+        background: var(--accent-cyan);
+        color: white;
+        padding: 0.3rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        display: inline-block;
+        margin-top: 1rem;
+      }
+
+      /* Skills Section */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        animation: skillsGridFade 1s ease-out 0.2s both;
+      }
+
+      .skill-category {
+        background: var(--bg-secondary);
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: var(--shadow);
+        animation: skillCategorySlide 1s ease-out calc(0.4s + var(--delay, 0s))
+          both;
+      }
+
+      .skill-category:nth-child(1) {
+        --delay: 0.1s;
+      }
+      .skill-category:nth-child(2) {
+        --delay: 0.2s;
+      }
+      .skill-category:nth-child(3) {
+        --delay: 0.3s;
+      }
+
+      .skill-category h3 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        color: var(--primary-purple);
+      }
+
+      .skill-item {
+        margin-bottom: 1.5rem;
+        animation: skillItemFade 1s ease-out calc(0.8s + var(--item-delay, 0s))
+          both;
+      }
+
+      .skill-item:nth-child(2) {
+        --item-delay: 0.1s;
+      }
+      .skill-item:nth-child(3) {
+        --item-delay: 0.2s;
+      }
+      .skill-item:nth-child(4) {
+        --item-delay: 0.3s;
+      }
+      .skill-item:nth-child(5) {
+        --item-delay: 0.4s;
+      }
+
+      .skill-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+      }
+
+      .skill-name {
+        font-weight: 500;
+        color: var(--text-primary);
+      }
+
+      .skill-percentage {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        font-weight: 600;
+      }
+
+      .skill-bar {
+        height: 6px;
+        background: var(--border-light);
+        border-radius: 3px;
+        overflow: hidden;
+      }
+
+      .skill-progress {
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          var(--primary-purple),
+          var(--primary-blue)
+        );
+        border-radius: 3px;
+        animation: progressFill 2s ease-out 1.5s both;
+        transform-origin: left;
+      }
+
+      /* Projects Section */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        animation: projectsGridFade 1s ease-out 0.2s both;
+      }
+
+      .project-card {
+        background: var(--bg-secondary);
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: transform 0.3s ease;
+        animation: projectCardSlide 1s ease-out calc(0.4s + var(--delay, 0s))
+          both;
+      }
+
+      .project-card:nth-child(1) {
+        --delay: 0.1s;
+      }
+      .project-card:nth-child(2) {
+        --delay: 0.2s;
+      }
+
+      .project-card:hover {
+        transform: translateY(-10px) scale(1.02);
+      }
+
+      .project-image {
+        height: 200px;
+        background: linear-gradient(
+          45deg,
+          var(--primary-purple),
+          var(--primary-blue)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 3rem;
+        animation: projectImageFloat 3s ease-in-out infinite;
+      }
+
+      .project-content {
+        padding: 1.5rem;
+      }
+
+      .project-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+      }
+
+      .project-description {
+        color: var(--text-secondary);
+        line-height: 1.6;
+      }
+
+      /* Certificates Section */
+      .certificates-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        animation: certificatesGridFade 1s ease-out 0.2s both;
+      }
+
+      .certificate-card {
+        background: var(--bg-secondary);
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: var(--shadow);
+        text-align: center;
+        transition: transform 0.3s ease;
+        border-top: 4px solid var(--primary-purple);
+        animation: certificateCardSlide 1s ease-out
+          calc(0.4s + var(--delay, 0s)) both;
+      }
+
+      .certificate-card:nth-child(1) {
+        --delay: 0.1s;
+      }
+      .certificate-card:nth-child(2) {
+        --delay: 0.2s;
+      }
+      .certificate-card:nth-child(3) {
+        --delay: 0.3s;
+      }
+      .certificate-card:nth-child(4) {
+        --delay: 0.4s;
+      }
+
+      .certificate-card:hover {
+        transform: translateY(-5px) scale(1.02);
+      }
+
+      .certificate-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(
+          45deg,
+          var(--primary-purple),
+          var(--primary-blue)
+        );
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        color: white;
+        font-size: 1.5rem;
+        animation: certificateIconSpin 3s ease-in-out infinite;
+      }
+
+      .certificate-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+      }
+
+      .certificate-issuer {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      /* Contact Section */
+      .contact {
+        background: linear-gradient(
+          135deg,
+          var(--primary-purple),
+          var(--primary-blue)
+        );
+        color: white;
+      }
+
+      .contact .section-title {
+        color: white;
+        animation: contactTitleFade 1s ease-out;
+      }
+
+      .contact-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        animation: contactContentSlide 1s ease-out 0.2s both;
+      }
+
+      .contact-info {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 2rem;
+        animation: contactInfoFade 1s ease-out 0.4s both;
+      }
+
+      .contact-methods {
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      .contact-method {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 1rem;
+        border-radius: 10px;
+        transition: background 0.3s ease;
+        animation: contactMethodSlide 1s ease-out calc(0.6s + var(--delay, 0s))
+          both;
+      }
+
+      .contact-method:nth-child(1) {
+        --delay: 0.1s;
+      }
+      .contact-method:nth-child(2) {
+        --delay: 0.2s;
+      }
+      .contact-method:nth-child(3) {
+        --delay: 0.3s;
+      }
+      .contact-method:nth-child(4) {
+        --delay: 0.4s;
+      }
+      .contact-method:nth-child(5) {
+        --delay: 0.5s;
+      }
+
+      .contact-method:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateX(10px);
+      }
+
+      .contact-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--accent-pink);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.2rem;
+        animation: contactIconPulse 2s ease-in-out infinite;
+      }
+
+      .contact-method a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .contact-method a:hover {
+        text-decoration: underline;
+      }
+
+      /* Animations */
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-100%);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes fadeInRight {
+        from {
+          opacity: 0;
+          transform: translateX(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes heroFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes profileFloat {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      @keyframes profileZoom {
+        from {
+          opacity: 0;
+          transform: scale(0.5);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes titleSlideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes textFadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 0.9;
+        }
+      }
+
+      @keyframes buttonPulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      @keyframes buttonFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes sectionTitleFade {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes aboutContentSlide {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes textSlideLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes statCardFloat {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes numberCount {
+        from {
+          opacity: 0;
+          transform: scale(0.5);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes timelineFade {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes timelineGrow {
+        from {
+          height: 0;
+        }
+        to {
+          height: 100%;
+        }
+      }
+
+      @keyframes timelineItemSlide {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes markerPulse {
+        0%,
+        100% {
+          transform: translateX(-50%) scale(1);
+        }
+        50% {
+          transform: translateX(-50%) scale(1.2);
+        }
+      }
+
+      @keyframes badgeGlow {
+        0%,
+        100% {
+          box-shadow: 0 0 5px rgba(6, 182, 212, 0.5);
+        }
+        50% {
+          box-shadow: 0 0 20px rgba(6, 182, 212, 0.8);
+        }
+      }
+
+      @keyframes skillsGridFade {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes skillCategorySlide {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes skillItemFade {
+        from {
+          opacity: 0;
+          transform: translateX(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes progressFill {
+        from {
+          transform: scaleX(0);
+        }
+        to {
+          transform: scaleX(1);
+        }
+      }
+
+      @keyframes projectsGridFade {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes projectCardSlide {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes projectImageFloat {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      @keyframes certificatesGridFade {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes certificateCardSlide {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes certificateIconSpin {
+        0%,
+        100% {
+          transform: rotate(0deg);
+        }
+        50% {
+          transform: rotate(180deg);
+        }
+      }
+
+      @keyframes contactTitleFade {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes contactContentSlide {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes contactInfoFade {
+        from {
+          opacity: 0;
+          transform: translateX(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes contactMethodSlide {
+        from {
+          opacity: 0;
+          transform: translateX(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes contactIconPulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .mobile-menu {
+          display: flex;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .about-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .timeline-line {
+          left: 20px;
+        }
+
+        .timeline-item {
+          flex-direction: row;
+        }
+
+        .timeline-marker {
+          left: 20px;
+        }
+
+        .timeline-content {
+          margin-left: 4rem;
+          margin-right: 0;
+        }
+
+        .contact-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .skills-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .about-stats {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="logo">Portfolio</div>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#certificates">Certificates</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="mobile-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <img src="profile.jpeg" alt="Harika Seemakurti" class="profile-image" />
+        <h1>Harika Seemakurti</h1>
+        <p>B.Tech CSE - Artificial Intelligence Student</p>
+        <p>
+          Passionate about AI, Web Development & building impactful tech
+          solutions.
+        </p>
+        <a href="#about" class="cta-button">Explore My Work</a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+          <div class="about-text">
+            <p>
+              I am a dedicated Computer Science Engineering student specializing
+              in Artificial Intelligence with a strong academic background and
+              passion for technology. My journey has been marked by consistent
+              academic excellence and a commitment to learning cutting-edge
+              technologies.
+            </p>
+            <p>
+              With experience in multiple programming languages and a keen
+              interest in AI, I strive to contribute to innovative solutions and
+              continue growing as a technology professional.
+            </p>
+          </div>
+          <div class="about-stats">
+            <div class="stat-card">
+              <div class="stat-number">9.15</div>
+              <div class="stat-label">Current CGPA</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">96.8%</div>
+              <div class="stat-label">Intermediate Score</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">10.0</div>
+              <div class="stat-label">SSC CGPA</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">4+</div>
+              <div class="stat-label">Certificates</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+      <div class="container">
+        <h2 class="section-title">Education</h2>
+        <div class="education-timeline">
+          <div class="timeline-line"></div>
+
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="completion-badge">In Progress</div>
+              <h3>B.Tech in CSE (AI)</h3>
+              <div class="institution-name">
+                Vignan's Institute of Information Technology, Visakhapatnam
+              </div>
+              <div class="grade">CGPA: 9.15</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="completion-badge">Completed</div>
+              <h3>Intermediate</h3>
+              <div class="institution-name">
+                Vidya Vikas Junior College, Visakhapatnam
+              </div>
+              <div class="grade">Score: 96.8%</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="completion-badge">Completed</div>
+              <h3>SSC</h3>
+              <div class="institution-name">
+                Chalapathi English Medium School
+              </div>
+              <div class="grade">CGPA: 10.0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+      <div class="container">
+        <h2 class="section-title">Skills & Expertise</h2>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3>Programming Languages</h3>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">Python</span>
+                <span class="skill-percentage">90%</span>
+              </div>
+              <div class="skill-bar">
+                <div
+                  class="skill-progress"
+                  style="--width: 90%; width: 90%"
+                ></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">Java</span>
+                <span class="skill-percentage">85%</span>
+              </div>
+              <div class="skill-bar">
+                <div
+                  class="skill-progress"
+                  style="--width: 85%; width: 85%"
+                ></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">JavaScript</span>
+                <span class="skill-percentage">80%</span>
+              </div>
+              <div class="skill-bar">
+                <div
+                  class="skill-progress"
+                  style="--width: 80%; width: 80%"
+                ></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">C</span>
+                <span class="skill-percentage">75%</span>
+              </div>
+              <div class="skill-bar">
+                <div
+                  class="skill-progress"
+                  style="--width: 75%; width: 75%"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3>Web Technologies</h3>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">HTML</span>
+                <span class="skill-percentage">95%</span>
+              </div>
+              <div class="skill-bar">
+                <div
+                  class="skill-progress"
+                  style="--width: 95%; width: 95%"
+                ></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">CSS</span>
+                <span class="skill-percentage">90%</span>
+              </div>
+              <div class="skill-bar">
+                <div
+                  class="skill-progress"
+                  style="--width: 90%; width: 90%"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3>Soft Skills</h3>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">Time Management</span>
+                <span class="skill-percentage">95%</span>
+              </div>
+              <div class="skill-bar">
+                <div
+                  class="skill-progress"
+                  style="--width: 95%; width: 95%"
+                ></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">Team Work</span>
+                <span class="skill-percentage">90%</span>
+              </div>
+              <div class="skill-bar">
+                <div
+                  class="skill-progress"
+                  style="--width: 90%; width: 90%"
+                ></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">Quick Learning</span>
+                <span class="skill-percentage">95%</span>
+              </div>
+              <div class="skill-bar">
+                <div
+                  class="skill-progress"
+                  style="--width: 95%; width: 95%"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-image">🏃‍♀️</div>
+            <div class="project-content">
+              <h3 class="project-title">Personal Fitness Using ML</h3>
+              <p class="project-description">
+                ML-based application for personalized fitness guidance and
+                health monitoring.
+              </p>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-image">❤️</div>
+            <div class="project-content">
+              <h3 class="project-title">Heart Disease Prediction</h3>
+              <p class="project-description">
+                Machine learning model to predict heart disease risk using
+                patient data.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates" class="section">
+      <div class="container">
+        <h2 class="section-title">Certificates & Achievements</h2>
+        <div class="certificates-grid">
+          <div class="certificate-card">
+            <div class="certificate-icon">🤖</div>
+            <h3 class="certificate-title">Generative AI Certificate</h3>
+            <p class="certificate-issuer">Next Wave</p>
+          </div>
+          <div class="certificate-card">
+            <div class="certificate-icon">🔒</div>
+            <h3 class="certificate-title">Zscaler Internship</h3>
+            <p class="certificate-issuer">AICTE Program</p>
+          </div>
+          <div class="certificate-card">
+            <div class="certificate-icon">☕</div>
+            <h3 class="certificate-title">Java Certificate</h3>
+            <p class="certificate-issuer">Great Learning</p>
+          </div>
+          <div class="certificate-card">
+            <div class="certificate-icon">🐍</div>
+            <h3 class="certificate-title">Python & JavaScript</h3>
+            <p class="certificate-issuer">Cisco Networking Academy</p>
+          </div>
+          <div class="certificate-card">
+            <div class="certificate-icon">🧠</div>
+            <h3 class="certificate-title">AI by TechSaksham</h3>
+            <p class="certificate-issuer">Certified by AICTE</p>
+          </div>
+          <div class="certificate-card">
+            <div class="certificate-icon">🏆</div>
+            <h3 class="certificate-title">Infosys Hackathon</h3>
+            <p class="certificate-issuer">Participation Certificate</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+      <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-content">
+          <div>
+            <div class="contact-info">
+              I'm always open to discussing new opportunities, collaborating on
+              projects, or simply connecting with fellow technology enthusiasts.
+              Feel free to reach out!
+            </div>
+            <div class="contact-methods">
+              <div class="contact-method">
+                <div class="contact-icon">📧</div>
+                <div>
+                  <strong>Email</strong><br />
+                  <a href="mailto:hseemakurti@gmail.com"
+                    >hseemakurti@gmail.com</a
+                  >
+                </div>
+              </div>
+              <div class="contact-method">
+                <div class="contact-icon">💼</div>
+                <div>
+                  <strong>LinkedIn</strong><br />
+                  <a
+                    href="https://www.linkedin.com/in/harika-seemakurti-00952b2b7/"
+                    target="_blank"
+                    >Connect with me</a
+                  >
+                </div>
+              </div>
+              <div class="contact-method">
+                <div class="contact-icon">🌐</div>
+                <div>
+                  <strong>Languages</strong><br />
+                  English, Telugu
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="contact-method">
+              <div class="contact-icon">📱</div>
+              <div>
+                <strong>Phone</strong><br />
+                <a href="tel:+918985291534">+91 8985291534</a>
+              </div>
+            </div>
+            <div class="contact-method">
+              <div class="contact-icon">📍</div>
+              <div>
+                <strong>Location</strong><br />
+                Visakhapatnam, India
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
